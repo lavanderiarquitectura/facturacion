@@ -1,0 +1,2 @@
+class FacFacturaLocalesController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class FacRecargoTelasController < ApplicationController
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_cuarto: MyString
+  cobro_local: 1
+  fecha: 2019-05-18
+  estado_local: false
+
+two:
+  id_cuarto: MyString
+  cobro_local: 1
+  fecha: 2019-05-18
+  estado_local: false

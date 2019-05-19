@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recargo: 1
+  id_tipo_tela: 1
+
+two:
+  recargo: 1
+  id_tipo_tela: 1

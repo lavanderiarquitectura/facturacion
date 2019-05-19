@@ -1,0 +1,2 @@
+class FacPrendasController < ApplicationController
+end
