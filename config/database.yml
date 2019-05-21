@@ -10,8 +10,10 @@ default: &default
   username: facturacionuser
   password: c3x6CAleql6Kv09gtx4e
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: 127.0.0.1
-  port: 3306
+  #host: 127.0.0.1 #Local
+  host: 192.168.0.15 #Docker rancher
+  port: 4306 #para docker
+  # port:3306 #local
   socket: /var/run/mysqld/mysqld.sock
   reconnect: true
   timeout: 5000
@@ -25,8 +27,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.mysql2
+  database: facturacion
 
 production:
   <<: *default
-  database: db/production.mysql2
+  database: facturacion

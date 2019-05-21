@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_05_19_201230) do
 
-  create_table "fac_factura_locals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "fac_factura_locals", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "id_cuarto", null: false
     t.integer "cobro_local", default: 0, null: false
     t.date "fecha", null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_201230) do
     t.index ["fac_globals_id"], name: "index_fac_factura_locals_on_fac_globals_id"
   end
 
-  create_table "fac_globals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "fac_globals", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "id_cuarto", null: false
     t.integer "cobro_global", null: false
     t.date "fecha", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_201230) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "fac_prendas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "fac_prendas", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "id_prenda", null: false
     t.string "id_cuarto", null: false
     t.integer "cobro", null: false
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 2019_05_19_201230) do
     t.index ["fac_factura_locals_id"], name: "index_fac_prendas_on_fac_factura_locals_id"
   end
 
-  create_table "fac_recargo_operacions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "fac_recargo_operacions", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "recargo", null: false
     t.integer "id_operacion", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "fac_recargo_telas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "fac_recargo_telas", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "recargo", null: false
     t.integer "id_tipo_tela", null: false
     t.datetime "created_at", null: false
