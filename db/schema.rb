@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_001012) do
+ActiveRecord::Schema.define(version: 2019_05_19_201230) do
 
   create_table "fac_factura_locals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "id_cuarto", null: false
     t.integer "cobro_local", default: 0, null: false
     t.date "fecha", null: false
-    t.boolean "estado_local", default: false, null: false
+    t.integer "estado_local", limit: 1, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "fac_globals_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_001012) do
     t.string "id_cuarto", null: false
     t.integer "cobro_global", null: false
     t.date "fecha", null: false
-    t.boolean "estado_global", default: false, null: false
+    t.integer "estado_global", limit: 1, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_001012) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "fac_factura_locals_id"
+    t.integer "estado_prenda", limit: 1
     t.index ["fac_factura_locals_id"], name: "index_fac_prendas_on_fac_factura_locals_id"
   end
 
