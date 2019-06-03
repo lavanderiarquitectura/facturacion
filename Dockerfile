@@ -6,5 +6,5 @@ COPY Gemfile /facturacion/Gemfile
 COPY Gemfile.lock /facturacion/Gemfile.lock
 RUN gem update
 RUN bundle install
-RUN bundle exec rake db:migrate
+# RUN bundle exec rake db:migrate
 COPY . /facturacion

@@ -15,7 +15,7 @@ class FacFacturaLocalesController < ApplicationController
             count = count + 1
             
             if registro.estado_global == 0
-                # se adiciona a ña factura global existente, y se sale
+                # se adiciona a la factura global existente, y se sale
                 create( id_cuarto, registro.id, cobro, fecha, estado_local )
                 return
             end

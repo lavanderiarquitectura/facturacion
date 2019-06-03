@@ -10,10 +10,8 @@ default: &default
   username: facturacionuser
   password: c3x6CAleql6Kv09gtx4e
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  #host: 127.0.0.1 #Local
-  host: 192.168.0.15 #Docker rancher
-  port: 4306 #para docker
-  # port:3306 #local
+  host: 3.217.28.42
+  port: 3306
   socket: /var/run/mysqld/mysqld.sock
   reconnect: true
   timeout: 5000
