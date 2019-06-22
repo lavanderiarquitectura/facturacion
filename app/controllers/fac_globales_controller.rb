@@ -7,19 +7,13 @@ class FacGlobalesController < ApplicationController
     
     # POST: /createglobales
     def self.create( id_cuarto, fecha )
-        # id_cuarto = "c8nFJeMeBe"
         cobro_global = 0
-        # fecha = '2019-05-18'
         estado_global = 0
 
         @global = FacGlobal.new( :id_cuarto => id_cuarto, :cobro_global => cobro_global, :fecha => fecha, :estado_global => estado_global )
         if @global.save
-            #respond_to do |format|
-            #    format.json {render json: @global, status:201}
-            #  end
             return @global
         else
-            # render json: @global.errors
             return @global.errors
         end
 

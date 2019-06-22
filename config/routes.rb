@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   post "/createlocales", to: "fac_factura_locales#createlocal"  # Para comentar
   get "/getlocales", to: "fac_factura_locales#index" # para comentar
   patch "/updateprueba", to: "fac_factura_locales#updatecostoglobal" # para ELIMINAR 
+
+  # fac_prendas
+  post "postfacprendas", to: "fac_prendas#createPrenda"
 end

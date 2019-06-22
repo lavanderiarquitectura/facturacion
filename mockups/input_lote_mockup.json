@@ -1,0 +1,11 @@
+{
+	"factura": [
+		{
+		"fecha_ingreso": "2019-06-19",
+		"id_operacion": 2,
+		"id_prenda": 1
+		}
+	],
+	
+	"id_cuarto": 1
+}

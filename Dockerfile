@@ -6,5 +6,6 @@ COPY Gemfile /facturacion/Gemfile
 COPY Gemfile.lock /facturacion/Gemfile.lock
 RUN gem update
 RUN bundle install
+# RUN sudo apt-get install libmysqlclient-dev
 # RUN bundle exec rake db:migrate
 COPY . /facturacion
