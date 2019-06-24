@@ -1,5 +1,5 @@
 class FacPrendasController < ApplicationController
-    
+    $temp = 0;
     # GET: /fac_prendas
     def index
         @prendas = FacPrenda.all
@@ -41,18 +41,19 @@ class FacPrendasController < ApplicationController
             end
 
             # Si hay una factura local activa crea una nueva fac_prenda y la asocia
-           if id_fac_local != -1
-            create( id_fac_local, id_cuarto, id_prenda, cobro, fecha )
-            return
-           end
-
-            # si no existen facturas locales activas crea una nueva
-            @newFacLocal = FacFacturaLocalesController.createlocal( id_cuarto, fecha )
-            id_fac_local = @newFacLocal.id
-            res.push create( @newFacLocal.id, id_cuarto, id_prenda, cobro, fecha )
+            if id_fac_local != -1
+                res.push create( id_fac_local, id_cuarto, id_prenda, cobro, fecha )
+            else 
+                # si no existen facturas locales activas crea una nueva
+                @newFacLocal = FacFacturaLocalesController.createlocal( id_cuarto, fecha )
+                id_fac_local = @newFacLocal.id
+                res.push create( @newFacLocal.id, id_cuarto, id_prenda, cobro, fecha )
+            end
 
         end
-        render json: res
+        respond_to do |format|
+            format.json {render json: res, status:200}
+        end
     end
     
     # crea una nueva fac_prenda
@@ -60,14 +61,13 @@ class FacPrendasController < ApplicationController
         @prenda = FacPrenda.new( :id_prenda => id_prenda, :id_cuarto => id_cuarto, :cobro => cobro, :fecha => fecha, :fac_factura_locals_id => id_fac_local )
         if @prenda.save
             updatecostolocal( id_fac_local, cobro, id_cuarto )
-            #respond_to do |format|
-            #    format.json {render json: @prenda, status:201}
-            #  end
-
-            return @prenda
         else
             return @prenda.errors
         end
+
+        # FacPrenda.insertfacprenda( id_fac_local, id_cuarto, id_prenda, cobro, fecha )
+        # updatecostolocal( id_fac_local, cobro, id_cuarto )
+        return true
     end
 
     def updatecostolocal( id_fac_local, newcosto, id_cuarto )
