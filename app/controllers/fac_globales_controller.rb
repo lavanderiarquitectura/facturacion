@@ -99,5 +99,26 @@ class FacGlobalesController < ApplicationController
         return lista_id
 
     end
+
+    # PATCH /payfactura/:id_cuarto
+    # Paga la factura global (su estado pasa a ser diferente de 0)
+    def payfactura()
+        @global = FacGlobal.where( "id_cuarto" => params[:id_cuarto], "estado_global" => 0 )
+        validador = 0
+
+        @global.each do |registro|
+            registro.update estado_global: 1
+            validador += 1
+        end
+
+        if validador > 0
+            hahs_pay_mensaje = { :status => "OK", :reason => "Se actualizo el estado de la factura" }
+            render json: hahs_pay_mensaje
+        else
+            hahs_pay_mensaje = { :status => "FAIL", :reason => "No se encontro ninguna factura pendiente para ese cuarto" }
+            render json: hahs_pay_mensaje
+        end
+        
+    end
     
 end
