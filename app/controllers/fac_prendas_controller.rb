@@ -73,5 +73,23 @@ class FacPrendasController < ApplicationController
     def updatecostolocal( id_fac_local, newcosto, id_cuarto )
         FacFacturaLocalesController.updatecosto( id_fac_local, newcosto, id_cuarto )
     end
-    
+
+    # Retorna un array de diccionios, donde cada uno contiene el valor "id_prenda": valor
+    # todo esto perteneciente a la factura local recibida
+    def self.getprendasxlocal( id_fac_local )
+        array_prendas = []
+        hash_prendas = {}
+
+        @prenda = FacPrenda.where( "fac_factura_locals_id" => id_fac_local )
+
+        @prenda.each do |registro|
+            id_prenda = registro.id_prenda
+            costo_prenda = registro.cobro
+            hash_prendas = { :id_prenda => id_prenda, :costo => costo_prenda }
+            array_prendas.push hash_prendas
+        end
+
+        return array_prendas
+
+    end
 end

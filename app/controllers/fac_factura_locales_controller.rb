@@ -76,7 +76,7 @@ class FacFacturaLocalesController < ApplicationController
         end
     end
 
-    # Retorna la factura global activa de la factura local recivida
+    # Retorna la factura global activa de la factura local recibida
     # si no encuentra ninguna retorna -1
     def self.getglobal( id_cuarto )
         @global = FacGlobal.where( "id_cuarto" => id_cuarto )
@@ -89,6 +89,21 @@ class FacFacturaLocalesController < ApplicationController
 
         return -1
 
+    end
+
+    # retorna el costo de la factura local y la fecha de su creacion
+    def self.getcostolocal( id_fac_local )
+        valor = ""
+        fecha = ""
+
+        @local = FacFacturaLocal.where( "id" => id_fac_local )
+
+        # solo deberia tener un recorrido ya que el id es unico
+        @local.each do |registro|
+            valor = registro.cobro_local
+            fecha = registro.fecha
+        end
+        return valor, fecha
     end
 
 end

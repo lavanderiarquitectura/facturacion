@@ -55,5 +55,49 @@ class FacGlobalesController < ApplicationController
             return false
         end
     end
+
+    # GET /getfacturaglobal:id_cuarto
+    # Retorna el costo de la factura global y activa (estado = 0) perteneciente
+    # al id del cuarto.
+    def getfactura
+        id_global = FacFacturaLocalesController.getglobal( params[:id_cuarto] )
+        if id_global != -1
+            @global = FacGlobal.where( "id" => id_global, "estado_global" => 0 )
+            lista_fac_locales = getfacturaslocales( @global[0].id )
+
+            hash_body_json = {}
+            hahs_facturas_locales = {}
+            array_facturas_locales =[]
+
+            lista_fac_locales.each do |registro|
+                valor, fecha = FacFacturaLocalesController.getcostolocal( registro )
+                @prendas = FacPrendasController.getprendasxlocal( registro )
+
+                hahs_facturas_locales = { :no_factura_local => registro, :costo => valor, :fecha => fecha, :prendas => @prendas }
+                array_facturas_locales.push hahs_facturas_locales
+            end
+
+            hash_body_json = {  :id_cuarto => params[:id_cuarto], :total => @global[0].cobro_global, :facturas_locales => array_facturas_locales }
+            txt_josn = hash_body_json.to_json
+
+            render json: txt_josn
+
+        else
+            render json: 0
+        end
+    end
+
+    # Retona una lista de ids de facturas locales pertenecientes a id de la factura global recibida
+    def getfacturaslocales( id_fac_global )
+        @local = FacFacturaLocal.where( "fac_globals_id" => id_fac_global )
+        lista_id = []
+
+        @local.each do |registro|
+            lista_id.push registro.id 
+        end
+
+        return lista_id
+
+    end
     
 end

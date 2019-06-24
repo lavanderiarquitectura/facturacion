@@ -1,0 +1,21 @@
+{
+	"id_cuarto": 99,
+	"total": 16500,
+	"factura_parcial":[ 
+		{
+			"No_factura_parcial": 1,
+			"valor_parcial": 16500,
+			"fecha": "2019--06-19",
+			"prendas":[
+				{
+					"id_prenda": 135,
+					"costo" : 1000
+				},
+				{
+					"id_prenda": 135,
+					"costo" : 15500
+				}			
+			]
+		}
+	]
+}
