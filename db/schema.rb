@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_161534) do
+ActiveRecord::Schema.define(version: 2019_06_26_223421) do
 
   create_table "fac_factura_locals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "id_cuarto", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_06_22_161534) do
   end
 
   create_table "fac_prendas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "id_prenda", null: false
+    t.string "id_prenda", null: false
     t.integer "id_cuarto", null: false
     t.integer "cobro", null: false
     t.date "fecha", null: false
@@ -47,13 +47,6 @@ ActiveRecord::Schema.define(version: 2019_06_22_161534) do
   create_table "fac_recargo_operacions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "recargo", null: false
     t.integer "id_operacion", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "fac_recargo_telas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "recargo", null: false
-    t.integer "id_tipo_tela", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
