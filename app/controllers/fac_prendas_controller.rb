@@ -13,7 +13,6 @@ class FacPrendasController < ApplicationController
         input_json = params[:factura]
         id_cuarto = params[:id_cuarto]
         id_fac_local = -1
-        res = []
 
         # Busca si hay una factura local activa para ese cuarto
         @factura_local = FacFacturaLocal.where( "id_cuarto" => id_cuarto )
@@ -42,18 +41,18 @@ class FacPrendasController < ApplicationController
 
             # Si hay una factura local activa crea una nueva fac_prenda y la asocia
             if id_fac_local != -1
-                res.push create( id_fac_local, id_cuarto, id_prenda, cobro, fecha )
+                create( id_fac_local, id_cuarto, id_prenda, cobro, fecha )
             else 
                 # si no existen facturas locales activas crea una nueva
                 @newFacLocal = FacFacturaLocalesController.createlocal( id_cuarto, fecha )
                 id_fac_local = @newFacLocal.id
-                res.push create( @newFacLocal.id, id_cuarto, id_prenda, cobro, fecha )
+                create( @newFacLocal.id, id_cuarto, id_prenda, cobro, fecha )
             end
 
         end
-        respond_to do |format|
-            format.json {render json: res, status:200}
-        end
+        res = { :status => "OK", :reason => "Se adicionaron costo de prendas correctamente" }
+        txt_json = res.to_json
+        render json: txt_json
     end
     
     # crea una nueva fac_prenda

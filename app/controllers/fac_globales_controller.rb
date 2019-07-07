@@ -83,7 +83,9 @@ class FacGlobalesController < ApplicationController
             render json: txt_josn
 
         else
-            render json: 0
+            res0 = { :id_cuarto => params[:id_cuarto], :total => 0 }
+            txt_josn = res0.to_json
+            render json: txt_josn
         end
     end
 
