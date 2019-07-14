@@ -46,3 +46,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Cliente rest para consumir servicios
 gem 'rest-client'
+
+# Para controlar peticiones master/slave de la base de datos
+gem 'makara'

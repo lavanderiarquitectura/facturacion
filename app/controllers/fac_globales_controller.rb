@@ -128,7 +128,7 @@ class FacGlobalesController < ApplicationController
     def getfree()
         # Consume servicio de Registros para saber cuales son las habitaciones que existen
         # habitaciones = RestClient.get '3.92.2.102:8082/api/rooms'     # ip publica
-        habitaciones = RestClient.get '172.31.84.51:8082/api/rooms'       # ip privada
+        habitaciones = RestClient.get 'registro.lavanderia.local:8082/api/rooms'       # ip privada
         body = JSON.parse(habitaciones.body)
         ids_habitaciones = []
 

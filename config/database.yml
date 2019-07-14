@@ -5,16 +5,23 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: mysql2
+  adapter: 'mysql2_makara'
   encoding: utf8
   username: facturacionuser
   password: c3x6CAleql6Kv09gtx4e
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: laundry.c53qqljvuhfc.us-east-1.rds.amazonaws.com
   port: 3306
   # socket: /var/run/mysqld/mysqld.sock
   reconnect: true
   timeout: 5000
+  makara:
+    connections:
+      - role: master
+        host: db.lavanderia.local
+        # host: laundry.c53qqljvuhfc.us-east-1.rds.amazonaws.com
+      - role: slave
+        host: db.replica.lavanderia.local
+        # host: laundryreadreplica.c53qqljvuhfc.us-east-1.rds.amazonaws.com
 
 development:
   <<: *default
