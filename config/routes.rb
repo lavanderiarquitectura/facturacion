@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   # patch "/updatestateglobales/:id" , to: "fac_globales#updatestate" # para comentar
   # delete "/deleteglobal/:id",to:"fac_globales#destroy" # para comentar
   get "/getfacturaglobal/:id_cuarto", to: "fac_globales#getfactura" 
-  patch "/payfactura/:id_cuarto", to: "fac_globales#payfactura" 
+  patch "/payfactura/:id_cuarto", to: "fac_globales#payfactura"
+  get "/gethabitacionescostfree", to: "fac_globales#getfree"  
 
   # fac_facturas_locales
   # post "/createlocales", to: "fac_factura_locales#createlocal"  # Para comentar

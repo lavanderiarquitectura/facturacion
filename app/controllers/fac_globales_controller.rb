@@ -122,5 +122,40 @@ class FacGlobalesController < ApplicationController
         end
         
     end
+
+    # GET
+    # Retorna todas la habitaciones que no tienen deudas
+    def getfree()
+        # Consume servicio de Registros para saber cuales son las habitaciones que existen
+        # habitaciones = RestClient.get '3.92.2.102:8082/api/rooms'     # ip publica
+        habitaciones = RestClient.get '172.31.84.51:8082/api/rooms'       # ip privada
+        body = JSON.parse(habitaciones.body)
+        ids_habitaciones = []
+
+        # Una vez que obtiene todas las habitaciones que existen busca cuales de estas no tienen deudas
+        
+        # Se podria hacer asi si facturacion conociera todos los cuartos de ante mano
+        #@global = FacGlobal.where( "estado_global" => 1 )
+        #render json: @global
+
+        body.each do |registro|
+            global = FacGlobal.where( "id_cuarto" => registro['id_cuarto'], "estado_global" => 1 )
+            if ( global.length > 0 )
+                ids_habitaciones.push global[0]['id_cuarto']
+            else
+                # verifica que facturacion conosca el cuarto
+                # si no lo conoce no tiene deudas
+                global = FacGlobal.where( "id_cuarto" => registro['id_cuarto'] )
+                if ( global.length == 0 )
+                    ids_habitaciones.push registro['id_cuarto']
+                end
+            end
+        end
+
+        res = { :ids_habitaciones => ids_habitaciones }
+
+        render json: res
+
+    end
     
 end
